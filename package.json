@@ -1,0 +1,21 @@
+{
+  "name": "duodream-website",
+  "version": "1.0.0",
+  "description": "DuoDream Events - Professional Event Planning Website",
+  "main": "server/server.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm start",
+    "install-server": "cd server && npm install",
+    "install-client": "cd client && npm install",
+    "install-all": "npm run install-server && npm run install-client",
+    "build": "cd client && npm run build"
+  },
+  "keywords": ["event-planning", "duodream", "backdrop-design", "photography"],
+  "author": "DuoDream Events",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
