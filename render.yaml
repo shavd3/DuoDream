@@ -1,0 +1,24 @@
+services:
+  # Full Stack Application (Express serves React)
+  - type: web
+    name: duodream-events
+    runtime: node
+    region: oregon
+    plan: free
+    buildCommand: |
+      npm install
+      cd client && npm install && npm run build
+      cd ../server && npm install
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      # Add these in Render dashboard if you set up email:
+      # - key: EMAIL_USER
+      #   sync: false
+      # - key: EMAIL_PASS
+      #   sync: false
+    healthCheckPath: /api/company-info
+

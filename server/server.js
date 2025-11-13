@@ -16,6 +16,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Serve static files (images)
 app.use('/images', express.static(path.join(__dirname, '../Images')));
 
+// Serve React static files in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
+
 // Sample data for gallery
 const galleryImages = [
   {
@@ -198,6 +203,13 @@ app.get('/api/company-info', (req, res) => {
     ]
   });
 });
+
+// Serve React app for all non-API routes in production
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  });
+}
 
 // Start server
 app.listen(PORT, () => {
