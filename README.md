@@ -168,21 +168,71 @@ const transporter = nodemailer.createTransporter({
 
 ## 🌐 Deployment
 
-### Frontend Deployment
+### Render Deployment (Recommended)
+
+This project is configured for easy deployment on [Render](https://render.com) using the included `render.yaml` file.
+
+#### Automatic Deployment:
+1. **Push your code to GitHub**
+   ```bash
+   git add .
+   git commit -m "Your commit message"
+   git push origin main
+   ```
+
+2. **Connect to Render**
+   - Go to [Render Dashboard](https://dashboard.render.com/)
+   - Click "New" → "Blueprint"
+   - Connect your GitHub repository
+   - Render will automatically detect the `render.yaml` file
+
+3. **Deploy**
+   - Render will automatically build and deploy your application
+   - The build process will:
+     - Install all dependencies
+     - Build the React frontend
+     - Set up the Express backend
+     - Serve the React app from Express
+
+4. **Environment Variables (Optional)**
+   - If you want to enable email functionality, add these in Render dashboard:
+     - `EMAIL_USER` - Your SMTP email
+     - `EMAIL_PASS` - Your SMTP password
+
+#### What the deployment includes:
+- ✅ Full-stack app (React + Express in one service)
+- ✅ Automatic SSL certificate
+- ✅ Free tier available
+- ✅ Automatic deploys on git push
+- ✅ Health checks configured
+
+#### Your deployed app will be available at:
+```
+https://duodream-events.onrender.com
+```
+
+### Alternative Deployment Options
+
+#### Netlify/Vercel (Frontend only)
 1. Build the React app:
    ```bash
    cd client
    npm run build
    ```
-2. Deploy the `build` folder to your hosting service (Netlify, Vercel, etc.)
+2. Deploy the `build` folder to Netlify or Vercel
+3. Deploy backend separately (see below)
 
-### Backend Deployment
-1. Deploy the `server` folder to a Node.js hosting service (Heroku, Railway, etc.)
+#### Heroku/Railway (Backend)
+1. Deploy the `server` folder to a Node.js hosting service
 2. Update the frontend API calls to point to your production backend URL
 
-### Full-Stack Deployment
-- Use services like Heroku, Railway, or DigitalOcean for complete deployment
-- Set up environment variables for production settings
+### Environment Variables for Production
+```
+NODE_ENV=production
+PORT=10000
+EMAIL_USER=your-email@gmail.com (optional)
+EMAIL_PASS=your-email-password (optional)
+```
 
 ## 📱 Features Overview
 
